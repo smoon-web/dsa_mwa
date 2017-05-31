@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+		<title>To-Do List</title>
+	<link rel="stylesheet" href="css/styles.css">	
+	<script src="js/angular.min.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body data-ng-app="myModule" data-ng-controller="app"> <!-- initiate Angular -->
+	<h1>To-Do List</h1>
+		<input id="taskBox" type="text" data-ng-model="task" data-ng-keyup="searchEnter()"> <!-- We bind the input box to "task" here for use in the controller -->
+	<div>
+		<ol>
+			<li data-ng-repeat="aTask in tasks">
+				<input type="checkbox" data-ng-model="aTask.status">
+				<span contenteditable="false" data-ng-dblclick="contentEdit()" data-ng-keydown="enterAgain(aTask.taskMessage)" data-ng-model="aTask.taskMessage" class="done-{{aTask.status}}">
+				{{aTask.taskMessage}}
+				</span>
+			</li>
+		</ol>
+	</div>
+	
+</body>
+</html>
