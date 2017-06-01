@@ -1,0 +1,37 @@
+<!--
+*	Author:	Sean Mooney
+*	Assignment:	WE41 Mobile	Web	Applications Assignemnt 2
+*	Date: 2017/05/29
+*	REF: https://docs.angularjs.org/guide
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+		<title>To-Do List</title>
+	<link rel="stylesheet" href="css/styles.css">	
+	<script src="js/angular.min.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body data-ng-app="myModule" data-ng-controller="app"> <!-- initiate Angular -->
+	<h1>To-Do List</h1>
+		<form name="form" ng-submit="addTask()"> <!-- On submission, the task is added to the list, either by clicking Enter or clicking the Add Task  button-->
+			<input id="taskBox" type="text" data-ng-model="task" data-ng-keyup="searchEnter()" required> <!-- We bind the input box to "task" here for use in the controller -->
+			<button ng-disable="form.$invalid">Add Task</button>
+		</form>
+		
+		<br>
+		
+		<div class="taskList">
+			<ul>
+				<li data-ng-repeat="aTask in tasks">
+					<input type="checkbox" data-ng-model="aTask.status">
+					<span contenteditable="false" data-ng-dblclick="contentEdit()" data-ng-keydown="enterAgain(aTask.taskTitle)" data-ng-model="aTask.taskTitle" class="done-{{aTask.status}}">
+					{{aTask.taskTitle}}
+					</span>
+				</li>
+			</ul>
+		</div>
+	<button ng-click="clearCompleted()">Clear All Tasks</button>
+</body>
+</html>
